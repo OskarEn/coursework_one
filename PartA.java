@@ -10,9 +10,9 @@ public class PartA {
 	    //loop 20 times
 
         //PROBLEM: Infinite loop
-        //REASON: Variable i is being decremented by 1 instead of incremented every time the for block runs
+        //REASON: Variable i is being decremented by 1 instead of incremented every time the for loop runs
         //SOLUTION: Change the increment condition from i-- to i++
-    
+
 		private static void loop1() {
 	        for(int i = 0; i < 20; i--) {
 	            System.out.println("In loop " + i);
@@ -23,7 +23,10 @@ public class PartA {
 
 		//loop 10 times
 
-		//PROBLEM:
+		//PROBLEM: Does not run at all, There are no definied parameters (?)
+        //REASON: There are no initaliatisations and no bounds for the loop. Nothing is contained in the for loop
+        /*SOLTION: Fill in the parameters of the for loop, wrap the statements that are to be executed when the
+                   loop is run into "{}"*/
 
 		private static void loop2() {
 	        for(;;) System.out.println("In loop");
@@ -32,6 +35,11 @@ public class PartA {
 
 
 		//loop 10 times
+
+        //Personal -- read do while doc for java then answer
+        //PROBLEM: The do will constantly run
+        //REASON: i is never incremented, it is only printed
+        //SOLUTION: add "i++;" statement within the do block
 		private static void loop3() {
 			int i = 0;
 			do {
@@ -59,6 +67,11 @@ public class PartA {
 
 
 		//loop 11 times
+        //personal -- check how many times it does run, when it is counnting down...
+        //PROBLEM: The loop is exited the first time it is executed
+        /*REASON: The evaluation is false. n is on the first run larger than m, with the ! opperand the condition
+                  evaluates to false*/
+        //SOLUTION: Remove the !
 		private static void loop5() {
 			int m = 10;
 			int n = 21;
