@@ -23,8 +23,8 @@ public class PartA {
 
 		//loop 10 times
 
-		//PROBLEM: Does not run at all, There are no definied parameters (?)
-        //REASON: There are no initaliatisations and no bounds for the loop. Nothing is contained in the for loop
+		//PROBLEM: The out of loop statement is never reached.
+        //REASON: There are no initaliatisations and no bounds for the loop. If it compiles "In loop" will print without limit
         /*SOLTION: Fill in the parameters of the for loop, wrap the statements that are to be executed when the
                    loop is run into "{}"*/
 
@@ -71,7 +71,7 @@ public class PartA {
         //PROBLEM: The loop is exited the first time it is executed
         /*REASON: The evaluation is false. n is on the first run larger than m, with the ! opperand the condition
                   evaluates to false*/
-        //SOLUTION: Remove the !
+        //SOLUTION: Remove the "!"
 		private static void loop5() {
 			int m = 10;
 			int n = 21;
@@ -84,6 +84,10 @@ public class PartA {
 
 
 		//loop until i is equal to j
+        //NB review afterwards
+        //PROBLEM: The while loop never runs
+        //REASON: The while loop's inital value is false
+        //SOLUTION: Make the evaluation of the while loop while (i!=j)
 		private static void loop6(){
 			Random r = new Random();
 			int i = 0;
@@ -91,7 +95,7 @@ public class PartA {
 			while (false){
 				i = r.nextInt(10);
 				j = r.nextInt(1000);
-				System.out.println("i = "+i+" and j = "+j);
+				System.out.println("i = " + i + " and j = " + j);
 				if (i==j)break;
 			}
 			System.out.println("out of loop");
@@ -99,6 +103,9 @@ public class PartA {
 
 
 		//loop until i is equal to j
+        //PROBLEM:
+        //REASON:
+        //SOLUTION:
 		private static void loop7(){
 			Random r = new Random();
 			int i = 0;
@@ -114,6 +121,9 @@ public class PartA {
 
 
 		//loop until we randomly generate a 7
+        //PROBLEM:
+        //REASON:
+        //SOLUTION:
 		private static void loop8() {
 			boolean stop = false;
 			Random r = new Random();
@@ -133,7 +143,10 @@ public class PartA {
 
 
 		//loop 60 times (outer loop 10 times plus inner loop 5 x 10 times)
-		private static void loop9() {
+        //PROBLEM:
+        //REASON:
+        //SOLUTION:
+        private static void loop9() {
 			int i = 0;
 			int j = 0;
 			while(i < 10) {
@@ -150,6 +163,9 @@ public class PartA {
 
 
 		//draw a 9 x 9 rectangle using asterisks
+        //PROBLEM:
+        //REASON:
+        //SOLUTION:
 		private static void loop10() {
 			int k = 10;
 			for (int i = 0; i < k; i++) {
@@ -169,6 +185,10 @@ public class PartA {
 		        *********
 		       ***********
               *************				*/
+
+        //PROBLEM:
+        //REASON:
+        //SOLUTION:
 		private static void loop11() {
 			int k = 7;
 			int m = 13;
@@ -186,12 +206,14 @@ public class PartA {
 
 
 		//Search a String array for a particular String. If the search String is found return true, else return false.
-    	private static boolean loop12(String[]a, String find) {
+        //PROBLEM:
+        //REASON:
+        //SOLUTION:
+        private static boolean loop12(String[]a, String find) {
 			int i;
 			for (i=0; i<a.length && a[i]!=find; i++);
 			return (a[i]==find);
 		}
-
 
 		private static void runLoops() {
 			loop1();
