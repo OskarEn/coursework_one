@@ -84,7 +84,7 @@ public class PartA {
 
 
 		//loop until i is equal to j
-        //NB review afterwards
+        //TODO review afterwards
         //PROBLEM: The while loop never runs
         //REASON: The while loop's inital value is false
         //SOLUTION: Make the evaluation of the while loop while (i!=j)
@@ -103,7 +103,7 @@ public class PartA {
 
 
 		//loop until i is equal to j
-        //PROBLEM:
+        //PROBLEM: //i. check the nextInt, check the random method,
         //REASON:
         //SOLUTION:
 		private static void loop7(){
@@ -143,9 +143,9 @@ public class PartA {
 
 
 		//loop 60 times (outer loop 10 times plus inner loop 5 x 10 times)
-        //PROBLEM:
-        //REASON:
-        //SOLUTION:
+        //PROBLEM: The second while loop will continuously evaluate as true, meaning that the inner loop will execute infinitely
+        //REASON: The inner loop only increments the value of i, whilst the value of j does not change.
+        //SOLUTION: Change the i++ inside the while(j < 5) loop to j++
         private static void loop9() {
 			int i = 0;
 			int j = 0;
