@@ -25,6 +25,7 @@ public class CustomerVerifier {
         return Integer.parseInt(input);  //see the subject guide volume 1 section 9.6 for more on the parseInt(String) method
     }
 
+    //Helper class
     private static String getUserInput(String msg) {
         System.out.print(msg);
         return scanner.nextLine();
@@ -115,4 +116,93 @@ public class CustomerVerifier {
     private static void invalidCustomer(String customer) {
         System.out.println("Invalid customer " + customer);
     }
+
+    //1.a (+ b) *** three staments including calls to other methods, plus a return call.
+    //It is possible to use three methods from those above in order to make this method...
+    //It asks a customer for two different random character from their memorable word
+    //Method should return true if both characters given by the user match the memorable word characters asked for,
+    //and false otherwise.
+    private static boolean userKnowsRandomCharsFromMemorableWord(String customerName){
+
+        String memorableWord = getMemorableWord(customerName);
+
+        //Used to find what positions the random chars should be taken from
+        positionOfCharacter[2] = new int[]{getDiscreteRandomInts(2, customerName + 1)}; //Bound set to customer word length + 1
+
+        //compares the customer string response with a string made up of the two chars from the memorable word
+        //not too sure about the charsAt method, looks like it takes each letter
+        return (charsAt(memorableWord, positionOfCharacter[]).equalTo(getMemorableWordCharsFromUser(poitionOfCharacter[])));
+
+        //***Statements used before cutting down on text
+        //String correctResponse = charsAt(memorableWord, positionOfCharacter[]);
+        //The two chars together as type string to compare with the memorable word
+        //String customerResponse = getMemorableWordCharsFromUser(positionOfCharacter[]);
+
+    }
+
+    //2. a (+b)
+    //The while loop could be cleaned up by having less nesting of if else loops
+    private static void verify(){
+
+        //When the user no longer wants to verify customers this will be false and the while loop will end
+        boolean verifyMode = true;
+
+        while(verifyMode){
+            //Asks customer name
+            String name = getCustomerFromUser();
+
+            //Step 2: If the customer name is not in the array
+            if(!isValidCustomer(name);){
+                if(askUserToContinue()){
+                    break;
+                } else {
+                    verifyMode = false;
+                    break;
+                }
+            }else{
+                //Step 3: Ask for pin
+                int customerPin = getPinFromUser(name);
+
+                //Step 4: If the pin is not valid
+                if(!isValidPin(name, customerPin)){
+                    incorrectPin();
+                    if(askUserToContinue()){
+                        break;
+                    } else {
+                        verifyMode = false;
+                        break;
+                    }
+                }else{
+                    //Step 5 is removed as the getMemorableWordCharsFromUser() method is used in the
+                    // userKnowsRandomCharsFromMemorableWord method created in question one
+                    if(!userKnowsRandomCharsFromMemorableWord){
+                        if(askUserToContinue()){
+                            break;
+                        } else {
+                            verifyMode = false;
+                            break;
+                        }
+                    } else {
+                        verifiedCustomer(name, customerPin, getMemorableWord(customer));
+                        if(askUserToContinue()){
+                            break;
+                        } else {
+                            verifyMode = false;
+                            break;
+                        }
+                    }
+                }
+
+                System.out.println("If I see this, break doesn't take it back to the top of loop")
+                if(!verifyMode){
+                System.out.println("Thank you for using the customer verifier. Please direct any technical issues to: " +
+                        "ome7@student.london.ac.uk");}
+
+            }
+
+        }//end of while loop
+
+    }//end of verify method
+
+    public static void main(String[] args){verify();}
 }
