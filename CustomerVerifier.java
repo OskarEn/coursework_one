@@ -127,14 +127,29 @@ public class CustomerVerifier {
         String memorableWord = getMemorableWord(customerName);
 
         //Used to find what positions the random chars should be taken from
-        positionOfCharacter[2] = new int[]{getDiscreteRandomInts(2, customerName + 1)}; //Bound set to customer word length + 1
+        //positionOfCharacter[] = new int[]{getDiscreteRandomInts(2, customerName + 1)}; //Bound set to customer word length + 1
 
+        //positionOfCharacter[] = new int[2];
+        positionOfCharacter[2] = getDiscreteRandomInts(2, customerName);
+
+        //positionOfArray[] = getDiscreteRandomInts(2, customerName + 1);
         //compares the customer string response with a string made up of the two chars from the memorable word
         //not too sure about the charsAt method, looks like it takes each letter
-        return (charsAt(memorableWord, positionOfCharacter[]).equalTo(getMemorableWordCharsFromUser(poitionOfCharacter[])));
+
+        //original return statement
+        //return (charsAt(memorableWord, positionOfCharacter[]).equalTo(getMemorableWordCharsFromUser(poitionOfCharacter[])));
+
+        //Try again ...probs best to lower complexity
+        //return (charsAt(memorableWord, positionOfCharacter[])).equalTo(getMemorableWordCharsFromUser(positionOfCharacter[]));
+
+        String correctResponse = charsAt(memorableWord, positionOfCharacter[]);
+        boolean correct = correctResponse.equals(getMemorableWordCharsFromUser(positionOfCharacter[]));
+
+        return (correct);
+
+        //return (correctResponse.equals(getMemorableWordCharsFromUser(positionOfCharacter[])));
 
         //***Statements used before cutting down on text
-        //String correctResponse = charsAt(memorableWord, positionOfCharacter[]);
         //The two chars together as type string to compare with the memorable word
         //String customerResponse = getMemorableWordCharsFromUser(positionOfCharacter[]);
 
@@ -152,7 +167,7 @@ public class CustomerVerifier {
             String name = getCustomerFromUser();
 
             //Step 2: If the customer name is not in the array
-            if(!isValidCustomer(name);){
+            if(!isValidCustomer(name)){
                 if(askUserToContinue()){
                     break;
                 } else {
@@ -193,7 +208,7 @@ public class CustomerVerifier {
                     }
                 }
 
-                System.out.println("If I see this, break doesn't take it back to the top of loop")
+                System.out.println("If I see this, break doesn't take it back to the top of loop");
                 if(!verifyMode){
                 System.out.println("Thank you for using the customer verifier. Please direct any technical issues to: " +
                         "ome7@student.london.ac.uk");}
