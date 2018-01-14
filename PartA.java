@@ -36,7 +36,6 @@ public class PartA {
 
 		//loop 10 times
 
-        //Personal -- read do while doc for java then answer
         //PROBLEM: The do will constantly run
         //REASON: i is never incremented, it is only printed
         //SOLUTION: add "i++;" statement within the do block
@@ -67,7 +66,6 @@ public class PartA {
 
 
 		//loop 11 times
-        //personal -- check how many times it does run, when it is counnting down...
         //PROBLEM: The loop is exited the first time it is executed
         /*REASON: The evaluation is false. n is on the first run larger than m, with the ! opperand the condition
                   evaluates to false*/
@@ -84,7 +82,6 @@ public class PartA {
 
 
 		//loop until i is equal to j
-        //TODO review afterwards
         //PROBLEM: The while loop never runs
         //REASON: The while loop's inital value is false
         //SOLUTION: Make the evaluation of the while loop while (i!=j)
@@ -103,9 +100,10 @@ public class PartA {
 
 
 		//loop until i is equal to j
-        //PROBLEM: //i. check the nextInt, check the random method,
-        //REASON:
-        //SOLUTION:
+        //PROBLEM: There is an endless
+        //REASON: The nextInt() method will produce a pseduorandom number inbetween 0 (inclusive) and the parameter
+		// (exlusive), this means that the value the result of r.nextInt, will never == j
+        //SOLUTION: change the parameter of next int to  j + 1 i.e. i = r.nextIn(j +1);
 		private static void loop7(){
 			Random r = new Random();
 			int i = 0;
@@ -121,9 +119,10 @@ public class PartA {
 
 
 		//loop until we randomly generate a 7
-        //PROBLEM:
-        //REASON:
-        //SOLUTION:
+        //PROBLEM: The while condition evaluates constantly to true, causing an endless loop
+        //REASON: When the if condition is met, stop is assigned the value false (it initiates already as false),
+		// the while evaluates the inverse of the boolean, i.e. true, making it carry on executing
+        //SOLUTION: within the if statement change stop = true
 		private static void loop8() {
 			boolean stop = false;
 			Random r = new Random();
@@ -162,10 +161,12 @@ public class PartA {
 		}
 
 
+
 		//draw a 9 x 9 rectangle using asterisks
-        //PROBLEM:
-        //REASON:
-        //SOLUTION:
+        //PROBLEM: The loop instead prints a 9 x 9 right-angled triange (see the "Actual output" note below)
+        //REASON: The inner for loop changes depending on the current value of i in the outer loop, causing the amount
+		// of times that asterik is printed in a line to be variable
+        //SOLUTION: change j < i to j < k in the inner for loop
 		private static void loop10() {
 			int k = 10;
 			for (int i = 0; i < k; i++) {
@@ -176,8 +177,24 @@ public class PartA {
 			}
 		}
 
+		//Actual output:
+		/*
 
-		//Draw a pyramid using asterisks, the pyramid has 7 lines, the top line has 1 star, the next row 2 more (ie 3), rows increase by 2 until the bottom row has 13 stars as follows:
+		 *
+		 **
+		 ***
+		 ****
+		 *****
+		 ******
+		 *******
+		 ********
+		 *********
+
+		 */
+
+
+		//Draw a pyramid using asterisks, the pyramid has 7 lines, the top line has 1 star, the next row 2 more (ie 3),
+		// rows increase by 2 until the bottom row has 13 stars as follows:
 		/*          *
 		           ***
 		          *****
@@ -186,12 +203,13 @@ public class PartA {
 		       ***********
               *************				*/
 
-        //PROBLEM:
+        //PROBLEM: Only one asterisk is printed in each row, with only the padding (i.e the amount of " ")
+		// on the left changing
         //REASON:
         //SOLUTION:
 		private static void loop11() {
-			int k = 7;
-			int m = 13;
+			int k = 7; //the amount of lines
+			int m = 13; //size of bottom row, here x and y are 0
 			int x = 6; int y = x;
 			for (int i = 0; i < k; i++) {
 				for (int j = 0; j < m; j++) {
