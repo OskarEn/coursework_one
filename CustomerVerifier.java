@@ -118,8 +118,7 @@ public class CustomerVerifier {
     }
 
     //1.a (+ b) *** three staments including calls to other methods, plus a return call.
-    //It is possible to use three methods from those above in order to make this method...
-    //It asks a customer for two different random character from their memorable word
+    //It asks a customer for two different random characters from their memorable word
     //Method should return true if both characters given by the user match the memorable word characters asked for,
     //and false otherwise.
     private static boolean userKnowsRandomCharsFromMemorableWord(String customerName){
@@ -127,97 +126,77 @@ public class CustomerVerifier {
         String memorableWord = getMemorableWord(customerName);
 
         //Used to find what positions the random chars should be taken from
-        //positionOfCharacter[] = new int[]{getDiscreteRandomInts(2, customerName + 1)}; //Bound set to customer word length + 1
+        int[] positionOfCharacter = getDiscreteRandomInts(2, customerName.length() + 1); //Bound set to customer word length + 1
 
-        //positionOfCharacter[] = new int[2];
-        positionOfCharacter[2] = getDiscreteRandomInts(2, customerName);
+        //Saving the correct answer as string to make the .equals more readable
+        String correctResponse = charsAt(memorableWord, positionOfCharacter);
+        return correctResponse.equals(getMemorableWordCharsFromUser(positionOfCharacter));
 
-        //positionOfArray[] = getDiscreteRandomInts(2, customerName + 1);
-        //compares the customer string response with a string made up of the two chars from the memorable word
-        //not too sure about the charsAt method, looks like it takes each letter
-
-        //original return statement
-        //return (charsAt(memorableWord, positionOfCharacter[]).equalTo(getMemorableWordCharsFromUser(poitionOfCharacter[])));
-
-        //Try again ...probs best to lower complexity
-        //return (charsAt(memorableWord, positionOfCharacter[])).equalTo(getMemorableWordCharsFromUser(positionOfCharacter[]));
-
-        String correctResponse = charsAt(memorableWord, positionOfCharacter[]);
-        boolean correct = correctResponse.equals(getMemorableWordCharsFromUser(positionOfCharacter[]));
-
-        return (correct);
-
-        //return (correctResponse.equals(getMemorableWordCharsFromUser(positionOfCharacter[])));
-
-        //***Statements used before cutting down on text
-        //The two chars together as type string to compare with the memorable word
-        //String customerResponse = getMemorableWordCharsFromUser(positionOfCharacter[]);
 
     }
 
     //2. a (+b)
-    //The while loop could be cleaned up by having less nesting of if else loops
-    private static void verify(){
+    //The while loop could be cleaned up by having less nesting of if else loops, but it is still readable
+    private static void verify() {
 
         //When the user no longer wants to verify customers this will be false and the while loop will end
         boolean verifyMode = true;
 
-        while(verifyMode){
+        while (verifyMode) {
             //Asks customer name
             String name = getCustomerFromUser();
 
             //Step 2: If the customer name is not in the array
-            if(!isValidCustomer(name)){
-                if(askUserToContinue()){
-                    break;
+            if (!isValidCustomer(name)) {
+                if (askUserToContinue()) {
+                    //break;
                 } else {
                     verifyMode = false;
                     break;
                 }
-            }else{
+            } else {
                 //Step 3: Ask for pin
-                int customerPin = getPinFromUser(name);
+                int customerPin = getPinFromUser();
 
                 //Step 4: If the pin is not valid
-                if(!isValidPin(name, customerPin)){
-                    incorrectPin();
-                    if(askUserToContinue()){
-                        break;
+                if (!isValidPin(name, customerPin)) {
+                    incorrectPin(name, customerPin);
+                    if (askUserToContinue()) {
+                       // break;
                     } else {
                         verifyMode = false;
                         break;
                     }
-                }else{
+                } else {
                     //Step 5 is removed as the getMemorableWordCharsFromUser() method is used in the
                     // userKnowsRandomCharsFromMemorableWord method created in question one
-                    if(!userKnowsRandomCharsFromMemorableWord){
-                        if(askUserToContinue()){
-                            break;
+                    if (!userKnowsRandomCharsFromMemorableWord(name)) {
+                        invalidMemorableWord(name);
+                        if (askUserToContinue()) {
+                           // break;
                         } else {
                             verifyMode = false;
                             break;
                         }
                     } else {
-                        verifiedCustomer(name, customerPin, getMemorableWord(customer));
-                        if(askUserToContinue()){
-                            break;
+                        verifiedCustomer(name, customerPin, getMemorableWord(name));
+                        if (askUserToContinue()) {
+                            //break;
                         } else {
                             verifyMode = false;
                             break;
                         }
                     }
                 }
-
-                System.out.println("If I see this, break doesn't take it back to the top of loop");
-                if(!verifyMode){
-                System.out.println("Thank you for using the customer verifier. Please direct any technical issues to: " +
-                        "ome7@student.london.ac.uk");}
-
             }
 
         }//end of while loop
 
+        System.out.println("Thank you for using the customer verifier. Please direct any technical issues to: " +
+                "ome7@student.london.ac.uk");
+
     }//end of verify method
 
     public static void main(String[] args){verify();}
-}
+
+}//end of class
