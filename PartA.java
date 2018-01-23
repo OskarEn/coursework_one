@@ -205,28 +205,37 @@ public class PartA {
 
         //PROBLEM: Only one asterisk is printed in each row, with only the padding (i.e the amount of " ")
 		// on the left changing
-        //REASON:
-        //SOLUTION:
+        //REASON: x and y start with the same value and for each loop of the outer for loop they are also incremented by
+		// one, therefore, the evaluation ((j>=x)&&(j<=y)) is only true with one value of j. We want  ((j>=x)&&(j<=y))
+		// to evaluate to true 2 more times that the previous outer loop until !(i < k). This is done by derementing the
+		// value of x and incrementing the value of y for each outer loop
+        //SOLUTION: decrement the value of x instead of incrementing it, i.e. x--;
 		private static void loop11() {
 			int k = 7; //the amount of lines
 			int m = 13; //size of bottom row, here x and y are 0
 			int x = 6; int y = x;
-			for (int i = 0; i < k; i++) {
-				for (int j = 0; j < m; j++) {
+			for (int i = 0; i < k; i++) { //for all rows
+				for (int j = 0; j < m; j++) { //for rows not wider than 13
 					if (j<x) System.out.print(" ");
 					if ((j>=x)&&(j<=y)) System.out.print("*");
 				}
 				System.out.println();
 				x++;
 				y++;
-			}
+			} //end of for
 		}
 
 
 		//Search a String array for a particular String. If the search String is found return true, else return false.
-        //PROBLEM:
-        //REASON:
-        //SOLUTION:
+        //PROBLEM: There is an out of bounds error in the return statement if a non-matching word is used
+        //REASON: If there is not a matching name, the final run of the loop is when i = 8, the value of i is then
+		// incremented once more at the end but the loop isn't done again. This means that if a word is not found, the
+		// return statement is return (a[9]==find) which is out of bounds for the array
+        //SOLUTION: One solution would be to have a checker to see if the value of i is equal to the value a.length
+		// (indicates the whole array way checked) and have this return false i.e. at the end add .......................
+		// if(i == a.length){
+		//           return false;
+		//        } else{return (a[i]==find);}
         private static boolean loop12(String[]a, String find) {
 			int i;
 			for (i=0; i<a.length && a[i]!=find; i++);
